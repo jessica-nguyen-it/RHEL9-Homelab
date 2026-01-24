@@ -1,4 +1,4 @@
-# Week 11 – Advanced Package Management
+# Week 11 – Package Management and Module Streams
 
 This week we'll work on understanding subscriptions, repositories, and how YUM pulls everything together. So, let’s dive in!
 > NOTE: If your system uses **DNF** instead of YUM, you can replace `yum` with `dnf` in almost all commands.
@@ -111,7 +111,7 @@ sudo yum remove package_name
 sudo yum autoremove
 ```
 
-## Installing Software from a Local RPM File
+#### Installing Software from a Local RPM File
 
 A remote RPM comes from a repository hosted somewhere else, usually on the internet or your company’s internal network. In contrast, a local RPM is a package file that already exists on your machine (or a USB drive, shared folder, etc.). You download it manually, then install it directly.
 
@@ -127,7 +127,7 @@ sudo yum remove nomachine
 sudo yum autoremove
 ```
 
-## Managing Package Groups
+#### Managing Package Groups
 
 YUM also supports package groups, which bundle related software together into a single installable unit. This makes it easy to set up entire environments—like a GUI, development tools, or server roles—with one command instead of installing each package individually.
 
@@ -145,7 +145,7 @@ sudo yum group install 'Server with GUI'
 sudo yum group remove 'Server with GUI'
 ```
 
-## Updating and Upgrading Packages
+#### Updating and Upgrading Packages
 
 ```bash
 # Check for available updates:
@@ -156,3 +156,57 @@ sudo yum update
 
 # After updating critical components like the kernel, reboot to apply changes.
 ```
+
+## Working with Package Module Streams
+
+Application streams (AppStreams) let you choose between multiple versions of the same software, grouped into modules. This gives you flexibility when different environments or applications require different versions.
+
+A module is a collection of related packages that are usually installed together.
+A profile is a subset of that module designed for a specific purpose — for example:
+- server configuration
+- client setup
+- development environment
+
+Module streams can be enabled or disabled, and only one stream of a module can be active at a time. This ensures that only the correct version of the software (and its dependencies) gets installed, with YUM handling dependency resolution automatically.
+
+#### Viewing Available Modules
+```bash
+# To list all available module streams:
+sudo yum module list
+
+Name    Stream    Profiles        Summary
+nginx   mainline  common          [ nginx webserver ]
+nginx   1.20      common          [ nginx webserver ]
+nodejs  13        default,        Javascript runtime
+                  develop
+                  minimal
+nodejs  16-epel   default,        Javascript runtime
+                  develop
+                  minimal
+```
+
+#### Some modules (like Node.js) offer multiple versions. If you install a module without specifying a version, YUM installs the default stream — for example, Node.js  10 with the common profile.
+```bash
+# To install a specific version with a specific profile:
+sudo yum module install nodejs:14/development
+
+# After installation, verify the active stream:
+sudo yum module list --installed nodejs
+
+Name      Stream     Profiles                          Summary
+nodejs    14 [e]     common [d], development [i], ...  Javascript runtime
+
+# [e] enabled
+# [d] default
+# [i] installed
+# [x] disabled
+```
+
+#### If you want to revert a module back to its default settings (for example, switching Node.js  back to version 10):
+```bash
+sudo yum module reset nodejs
+```
+    After resetting, you can install a different version — such as Node.js  16 with the development profile — using the same install syntax.
+    This modular system makes it easy to switch between software versions depending on your project or environment needs.
+
+
