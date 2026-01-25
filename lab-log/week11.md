@@ -183,6 +183,8 @@ nodejs  13        default,        Javascript runtime
 nodejs  16-epel   default,        Javascript runtime
                   develop
                   minimal
+
+sudo yum module list nodejs
 ```
 
 #### Some modules (like Node.js) offer multiple versions. If you install a module without specifying a version, YUM installs the default stream — for example, Node.js  10 with the common profile.
