@@ -122,7 +122,7 @@ sudo wget https://download.nomachine.com/download/7.7/Linux/nomachine_7.7.4_1_x8
 # Install it:
 sudo yum install ./nomachine_7.7.4_1_x86_64.rpm
 
-# Remove it later:
+# Remove it (and it's dependencies):
 sudo yum remove nomachine
 sudo yum autoremove
 ```
