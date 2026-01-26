@@ -38,9 +38,9 @@ I initially focused my practice on an AWS EC2 instance, but over time I expanded
 - **Week 10** – Linux Startup Processes and Services → [Read it](./lab-log/week10.md)
 - **Week 11** – Package Management and Module Streams → [Read it](./lab-log/week11.md)
 - **Week 12** – Nework Configuration → [Read it](./lab-log/week12.md)
-- **Week 13** – SELinux & Firewall Tuning → [Read it](./lab-log/week13.md)
-- **THE END**... just kidding, more logs on the way 😼
-
+- **Week 13** – Users and Groups → [Read it](./lab-log/week13.md)
+- **Week 14** – SELinux & Firewall Tuning → [Read it](./lab-log/week14.md)
+- **Week 15** – Container Management → [Read it](./lab-log/week15.md)
 
 ---
 
