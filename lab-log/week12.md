@@ -139,7 +139,7 @@ Once you identify the active connection (e.g., `enp0s3`), add the route in its s
 - nmcli (after editing, reload with `sudo nmcli connection reload`)
 - nmtui (navigate to the routing section and add the route interactively)
 
-NetworkManager applies the route after a reload or reboot. Don't forget `sudo nmcli device reapply enp0s3`.
+NetworkManager applies the route after a reload or reboot. Use `sudo nmcli device reapply enp0s3` to apply the configuration now.
 ```
 
 ## Configuring Time Service Clients
