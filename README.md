@@ -37,8 +37,8 @@ I initially focused my practice on an AWS EC2 instance, but over time I expanded
 - **Week 9** - Scheduling Tasks with Cron, Anacron, and At → [Read it](./lab-log/week9.md)
 - **Week 10** – Linux Startup Processes and Services → [Read it](./lab-log/week10.md)
 - **Week 11** – Package Management and Module Streams → [Read it](./lab-log/week11.md)
-- **Week 12** – Identity & Access Management → [Read it](./lab-log/week13.md)
-- **Week 14** – SELinux & Firewall Tuning → [Read it](./lab-log/week13.md)
+- **Week 12** – Neworking → [Read it](./lab-log/week12.md)
+- **Week 13** – SELinux & Firewall Tuning → [Read it](./lab-log/week13.md)
 - **THE END**... just kidding, more logs on the way 😼
 
 
