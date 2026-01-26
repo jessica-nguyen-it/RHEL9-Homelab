@@ -49,10 +49,6 @@ Before a Linux system can get an IP address, gateway, routes, or DNS settings, t
 # Confirm that NetworkManager is running and enabled at boot:
 systemctl status NetworkManager.service
 
-# Installing NetworkManager (If Needed)
-sudo dnf install NetworkManager
-sudo systemctl start NetworkManager.service
-
 # Ensuring a Network Connection Autoconnects at Boot
 nmcli connection show 
 sudo nmcli connection modify enp0s3 autoconnect yes
@@ -71,13 +67,15 @@ This displays all services currently listening on the system. For example, `sshd
 
 You might remember from last week that we used `sudo systemctl stop chronyd.service` to stop a service. `ss` is useful alongside that because after stopping a service, you can verify that it’s no longer listening on its port by running `sudo ss -ltunp` on top of `sudo systemctl status chronyd.service`.
 
-## Implementing Packet Filtering
+## Packet Filtering
 
 Packet filtering controls which network packets are allowed into or out of a Linux system, helping protect against unwanted or malicious traffic. On Red Hat–based systems, FirewallD handles this using zones, and each zone defines what traffic is allowed for the interfaces assigned to it.
 
 #### FirewallD Basics
 
-Each network interface is assigned to a specific FirewallD zone, and each zone has its own rules—for example, a wireless interface might be placed in the Drop zone to block all traffic, while a wired office interface might be placed in the Trusted zone to allow everything, and most systems default to the Public zone, which blocks all incoming connections unless explicitly allowed.
+Each network interface is assigned to a specific FirewallD zone, and each zone has its own rules—for example, a wireless interface might be placed in the Drop zone to block all traffic, while a wired office interface might be placed in the Trusted zone to allow everything. 
+
+Most systems default to the Public zone, which blocks all incoming connections unless explicitly allowed.
 
 ```bash
 # Check the default zones
@@ -93,7 +91,7 @@ sudo firewall-cmd --list-all
 
 #### Opening Traffic 
 
-FirewallD lets you open traffic in two ways, by service or by port. It’s important to choose one method—either by service or by port—to avoid conflicting rules, and you can remove a rule the same way you added it, whether you’re removing the service name or the port number.
+FirewallD lets you open traffic in two ways, by service or by port. It’s important to choose one method, either by service or by port—to avoid conflicting rules. You can also remove a rule the same way you added it, whether you’re removing the service name or the port number.
 
 ```bash
 # Allow by service name:
@@ -106,9 +104,7 @@ sudo firewall-cmd --add-port=80/tcp
 sudo firewall-cmd --add-source=10.11.12.0/24 --zone=trusted
 ```
 
-#### Making Rules Permanent
-
-Rules are temporary by default. So always ensure to test first, then make them permanent:
+These rules are temporary by default, so always ensure to test first, then make them permanent like so:
 
 ```bash
 sudo firewall-cmd --add-port=12345/tcp
@@ -122,9 +118,7 @@ Adding temporary static routes:
 ```bash
 # Use the `ip` command to add routes for testing:
 sudo ip route add 192.168.0.0/24 via 10.0.0.100
-
-# If you need to specify an interface:
-sudo ip route add 192.168.0.0/24 via 10.11.12.100 dev enp0s3
+sudo ip route add 192.168.0.0/24 via 10.11.12.100 dev enp0s3 # If you need to specify an interface:
 
 # Remove a route:
 sudo ip route del 192.168.0.0/24
@@ -153,35 +147,13 @@ NetworkManager applies the route after a reload or reboot.
 Accurate system time is essential for logging, scheduling, authentication, and overall server reliability. Linux uses `Chrony` to keep the system clock synchronized with trusted network time servers.
 
 ```bash
-# Check if the Chrony service is running:
-systemctl status chronyd.service
+systemctl status chronyd.service                 # Check if the Chrony service is running
+timedatectl                                      # View current time settings, time zone, and NTP sync status
 
-# View current time settings, time zone, and NTP sync status:
-timedatectl
+timedatectl list-timezones                       # List all available time zones
+sudo timedatectl set-timezone America/New_York   # Set the system time zone
 
-# Set the system time zone:
-sudo timedatectl set-timezone America/New_York
-
-# List all available time zones:
-timedatectl list-timezones
-
-# Check if the system clock is synchronized:
-timedatectl
-
-# Force NTP synchronization if needed:
-sudo systemctl set-ntp true
-```
-
-In case you need to install Chrony:
-
-```bash
-# Install Chrony:
-sudo dnf install chrony
-
-# Start the Chrony service:
-sudo systemctl start chronyd.service
-
-# Enable Chrony at boot:
-sudo systemctl enable chronyd.service
+timedatectl                                      # Check if the system clock is synchronized
+sudo systemctl set-ntp true                      # Force NTP synchronization if needed
 ```
 
