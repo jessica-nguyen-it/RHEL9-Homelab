@@ -91,7 +91,7 @@ sudo firewall-cmd --list-all
 
 #### Opening Traffic 
 
-FirewallD lets you open traffic in two ways, by service or by port. It’s important to choose one method, either by service or by port—to avoid conflicting rules. You can also remove a rule the same way you added it, whether you’re removing the service name or the port number.
+FirewallD lets you open traffic in many ways, including by service or by port. It’s important to choose one method, either by service or by port—to avoid conflicting rules. You can also remove a rule the same way you added it, whether you’re removing the service name or the port number.
 
 ```bash
 # Allow by service name:
@@ -99,7 +99,8 @@ sudo firewall-cmd --add-service=http
 
 # Allow by port:
 sudo firewall-cmd --add-port=80/tcp
-
+```
+```bash
 # You can also sllow traffic from a specific network range:
 sudo firewall-cmd --add-source=10.11.12.0/24 --zone=trusted
 ```
@@ -107,9 +108,8 @@ sudo firewall-cmd --add-source=10.11.12.0/24 --zone=trusted
 These rules are temporary by default, so always ensure to test first, then make them permanent like so:
 
 ```bash
-sudo firewall-cmd --add-port=12345/tcp
-sudo firewall-cmd --add-port=12345/tcp --permanent
-
+sudo firewall-cmd --runtime-to-permanent
+sudo firewall-cmd --add-port=12345/tcp --permanent    # You need both this and the command without permanent (one enables it now, the other makes it permanent but does not enable it until the next boot)
 ```
 
 ## Configuring Static Routes
@@ -139,7 +139,7 @@ Once you identify the active connection (e.g., `enp0s3`), add the route in its s
 - nmcli (after editing, reload with `sudo nmcli connection reload`)
 - nmtui (navigate to the routing section and add the route interactively)
 
-NetworkManager applies the route after a reload or reboot.
+NetworkManager applies the route after a reload or reboot. Don't forget `sudo nmcli device reapply enp0s3`.
 ```
 
 ## Configuring Time Service Clients
