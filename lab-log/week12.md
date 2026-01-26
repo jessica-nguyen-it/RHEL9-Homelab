@@ -73,7 +73,7 @@ Packet filtering controls which network packets are allowed into or out of a Lin
 
 #### FirewallD Basics
 
-Each network interface is assigned to a specific FirewallD zone, and each zone has its own rules—for example, a wireless interface might be placed in the Drop zone to block all traffic, while a wired office interface might be placed in the Trusted zone to allow everything. 
+Each network interface is assigned to a specific FirewallD zone, and each zone has its own rules. For example, a wireless interface might be placed in the Drop zone to block all traffic, while the wired interface might be placed in the Trusted zone to allow everything. 
 
 Most systems default to the Public zone, which blocks all incoming connections unless explicitly allowed.
 
