@@ -78,7 +78,7 @@ sudo usermod --expiredate 2021-12-10 jack
 sudo chage --lastday 0 jack
 
 # Setting a password change interval
-sudo chage --madays 20 jack
+sudo chage --maxdays 20 jack
 
 # Check using:
 sudo chage --list jack
