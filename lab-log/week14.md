@@ -69,3 +69,6 @@ ssh-keygen -R server_ip      # remove one entry
 rm ~/.ssh/known_hosts        # remove all entries
 
 ```
+
+## List and Identify SELinux file and process contexts
+
