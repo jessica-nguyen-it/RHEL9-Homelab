@@ -47,7 +47,8 @@ john:x:1001:1001::/home/otherdirectory/:/bin/othershell    # username, password 
 
 # You can also review the current user's details using:
 id
-whoami 
+whoami
+ls -ln    # to see UID and GID file ownership
 
 ```
 
