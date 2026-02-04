@@ -1,4 +1,4 @@
-# Week 14 - SELinux and Firewall Tuning
+# Week 14 - SELinux and Key-Based Authentication
 
 This week we'll go over security configs, including SELinux file and process contexts, kernel runtime parameters, and key‑based SSH configuration.
 
@@ -125,7 +125,6 @@ root          unconfined_u      s0-s0:c0.c1023   *
 To check whether SELinux is currently enforcing its security policies, you can run the `getenforce` command. 
 
 When executed, it returns one of three possible modes. If the output is *Enforcing*, SELinux is actively applying its policies and blocking any unauthorized actions. If it reports *Permissive*, SELinux is not enforcing restrictions but will still log any actions that would have been denied. If the mode is *Disabled*, SELinux is completely turned off and no access control is being performed.
-
 
 
 
