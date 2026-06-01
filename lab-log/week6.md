@@ -13,15 +13,16 @@ So, yet again, here are my notes for the week:
    ```bash
    lsblk
    ```
-   → This lets you see disks and partitions.  
+   → This lets you see disks and partitions.
+   → / contains everything except the directories where other filesystems are mounted.
 
-2. Open partition tool  
+3. Open partition tool  
    ```bash
    sudo cfdisk /dev/sdb
    ```
    → Interactive version of `fdisk` for partition creation/deletion/resizing/typing. I was surprised at how intuitive it was to use!
 
-3. Make it persistent
+4. Make it persistent
 
     After formatting and mounting, add an entry in /etc/fstab so the partitions you made auto‑mount at boot. For example:
 
