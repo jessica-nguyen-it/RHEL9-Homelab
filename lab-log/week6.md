@@ -99,8 +99,8 @@ Thinking of it as this chain helps the concepts click into place and keeps the c
 5. Resizing → Grow/shrink LVs as needs change.
 
 	- Expanding one partition to take 100% of remaining capacity: `lvresize --extents 100%VG my_volume/partition1`
+   		- NOTE: If you need to resize a logical volume after creating a filesystem on it, don’t use lvresize by itself. If you extend the LV without also resizing the filesystem, the extra space will remain unused and unformatted. Pass '--resizefs' to resize both the logical volume and the filesystem.
 	- Shrinking back: `lvresize --resizefs --size 3G my_volume/partition1`
-   - Big picture: “I can expand my partition without reinstalling or repartitioning the whole disk.”
 
 6. Persistence → Add LV to /etc/fstab so it mounts at boot.
  ```bash
