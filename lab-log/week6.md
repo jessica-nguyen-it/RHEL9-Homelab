@@ -1,6 +1,6 @@
 # Week 6 - Configuring Local Storage (Partitions, RAID, LVM, SWAP, & Encryption)
 
-I'll admit, when this topic first came up during my summer internship, I was pretty intimidated... filesystems, partitions, and all the different acronyms hit me hard. But revisiting it now while preparing for the RHCSA, the concepts feel much more natural. 
+When this topic first came up during my summer internship, I was pretty intimidated... filesystems, partitions, and all the different acronyms hit me hard. But revisiting it now while preparing for the RHCSA, the concepts feel much more natural. 
 
 In fact, if there’s any topic I feel most confident about for the exam, it’s probably this one!
 
