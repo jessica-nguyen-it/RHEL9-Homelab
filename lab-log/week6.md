@@ -98,7 +98,7 @@ Thinking of it as this chain helps the concepts click into place and keeps the c
 
 5. Resizing → Grow/shrink LVs as needs change.
 
-	- Growing to 100% capacity: `lvresize --extents 100%VG my_volume/partition1`
+	- Expanding one partition to take 100% of remaining capacity: `lvresize --extents 100%VG my_volume/partition1`
 	- Shrinking back: `lvresize --resizefs --size 3G my_volume/partition1`
    - Big picture: “I can expand my partition without reinstalling or repartitioning the whole disk.”
 
