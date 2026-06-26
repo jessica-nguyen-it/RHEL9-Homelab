@@ -24,7 +24,7 @@ So, yet again, here are my notes for the week:
 
 4. Make it persistent
 
-    After formatting and mounting, add an entry in /etc/fstab so the partitions you made auto‑mount at boot. For example:
+    After formatting and mounting, add an entry in `/etc/fstab` so the partitions you made auto‑mount at boot. For example:
 
    ```bash
    /dev/sdb1   /data   xfs   defaults   0 0
